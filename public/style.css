@@ -153,7 +153,7 @@ header ul li:hover a {
   background: rgb(40, 40, 40);
   min-height: 100vh;
   padding: 120px 100px;
-  color: whitesmoke;
+  color: rgb(255, 63, 63);
 }
 
 #contact .content {
