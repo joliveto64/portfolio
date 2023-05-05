@@ -1,0 +1,260 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Questrial", sans-serif;
+  scroll-behavior: smooth;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(5px);
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: rgb(255, 225, 115, 0.3);
+}
+
+header .logo {
+  position: relative;
+  color: whitesmoke;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 2em;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+header ul {
+  position: relative;
+  display: flex;
+  gap: 40px;
+}
+
+header ul li {
+  list-style: none;
+}
+
+header ul li a {
+  text-decoration: none;
+  color: whitesmoke;
+  font-weight: 500;
+  font-size: 1.25em;
+}
+
+header ul li.active a,
+header ul li:hover a {
+  color: rgb(255, 225, 115);
+  transition: 0.25s;
+}
+
+#home {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgb(40, 40, 40);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px;
+}
+
+#home .content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 650px;
+  z-index: 10;
+}
+
+#home .content h2 {
+  position: relative;
+  font-size: 5em;
+  color: rgb(255, 225, 115);
+}
+
+#home .content p {
+  position: relative;
+  color: whitesmoke;
+  font-size: 1.2em;
+  line-height: 1.6em;
+  max-width: 26em;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  font-size: 1.25em;
+  max-width: 200px;
+  background-color: rgb(255, 225, 115);
+  color: black;
+  text-align: center;
+  padding: 15px 30px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: solid;
+  border-color: rgb(40, 40, 40);
+}
+
+.btn:hover {
+  background-color: rgb(40, 40, 40);
+  color: rgb(255, 225, 115);
+  transition: 0.25s;
+  border: solid;
+  border-color: rgb(255, 225, 115);
+}
+
+#home .me {
+  position: absolute;
+  bottom: 0;
+  right: 25px;
+  max-height: 90vh;
+  scale: 75%;
+  border: solid;
+  border-color: rgb(255, 225, 115);
+  border-width: 8px;
+}
+
+#portfolio {
+  background-color: rgb(40, 40, 40);
+  text-align: center;
+  color: whitesmoke;
+}
+#portfolio .content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#portfolio .content .imgBx {
+  position: relative;
+}
+
+#portfolio .content .imgBx img {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  max-height: 300px;
+}
+
+#portfolio,
+#contact {
+  position: relative;
+  background: rgb(40, 40, 40);
+  min-height: 100vh;
+  padding: 120px 100px;
+  color: whitesmoke;
+}
+
+#contact .content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin: 40px 0;
+}
+
+#contact .content a {
+  background-color: rgb(98, 98, 98);
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: rgb(255, 225, 115);
+  transition: 0.25s;
+}
+
+.sectiontext h2 {
+  color: rgb(255, 225, 115);
+  font-size: 2em;
+}
+
+#contact .content a:hover {
+  background-color: rgb(255, 225, 115);
+  color: rgb(40, 40, 40);
+}
+
+.contact-text {
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+.fa-envelope::before {
+  font-size: 1.2em;
+}
+
+.fa-phone::before {
+  font-size: 1.2em;
+}
+
+.thanks {
+  text-align: center;
+  padding-top: 50px;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+  header {
+    padding: 20px 50px;
+  }
+
+  header ul {
+    display: none;
+  }
+
+  #home {
+    padding: 150px 50px;
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+  #home .content h2 {
+    font-size: 4em;
+  }
+  .btn {
+    max-width: 160px;
+    padding: 10px 20px;
+  }
+  #home .me {
+    display: none;
+  }
+  .sectiontext h2 {
+    font-size: 2em;
+    text-align: center;
+  }
+  #portfolio,
+  #contact {
+    padding: 100px 50px;
+  }
+  #portfolio .content,
+  #contact .content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  #home .content h2 {
+    font-size: 3em;
+  }
+  /* #home .me {
+  } */
+  #portfolio .content,
+  #contact .content {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  #contact .content a {
+    height: 80px;
+  }
+}
