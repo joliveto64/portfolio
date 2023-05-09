@@ -1,13 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Questrial", sans-serif;
+  font-family: sans-serif;
   scroll-behavior: smooth;
 }
 
+/* HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 header {
   position: fixed;
   top: 0;
@@ -18,10 +17,13 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 10000;
-  backdrop-filter: blur(5px);
-  border-bottom: solid;
-  border-width: 1px;
-  border-color: rgb(255, 225, 115, 0.3);
+  transition: 0.25s ease-in-out;
+}
+
+.hide {
+  background-color: rgba(30, 30, 30, 1);
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 4px 6px rgb(30, 30, 30, 1);
 }
 
 header .logo {
@@ -30,7 +32,12 @@ header .logo {
   text-decoration: none;
   font-weight: 700;
   font-size: 2em;
-  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+  transition: 0.25s;
+}
+
+header .logo:hover {
+  color: rgb(255, 225, 115);
+  transition: 0.25s;
 }
 
 header ul {
@@ -48,146 +55,157 @@ header ul li a {
   color: whitesmoke;
   font-weight: 500;
   font-size: 1.25em;
-}
-
-header ul li.active a,
-header ul li:hover a {
-  color: rgb(255, 225, 115);
   transition: 0.25s;
 }
 
-#home {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  background-color: rgb(40, 40, 40);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 100px;
+header ul li:hover a {
+  transition: 0.25s;
+  color: rgb(255, 225, 115);
 }
 
-#home .content {
-  position: relative;
+/* HOME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#home {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 650px;
-  z-index: 10;
+  flex-direction: row;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgb(30, 30, 30);
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
 }
 
 #home .content h2 {
-  position: relative;
   font-size: 5em;
   color: rgb(255, 225, 115);
 }
 
 #home .content p {
-  position: relative;
   color: whitesmoke;
   font-size: 1.2em;
   line-height: 1.6em;
   max-width: 26em;
+  padding-block: 20px;
+  margin-bottom: 20px;
 }
 
 .btn {
-  position: relative;
-  display: inline-block;
   font-size: 1.25em;
   max-width: 200px;
-  background-color: rgb(255, 225, 115);
-  color: black;
+  background-color: rgb(98, 98, 98);
+  color: rgb(255, 225, 115);
   text-align: center;
   padding: 15px 30px;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-decoration: none;
   margin-top: 10px;
-  border-radius: 5px;
   border: solid;
-  border-color: rgb(40, 40, 40);
+  border-color: rgb(30, 30, 30);
+  font-weight: 500;
+  transition: 0.25s;
 }
 
 .btn:hover {
-  background-color: rgb(40, 40, 40);
-  color: rgb(255, 225, 115);
-  transition: 0.25s;
-  border: solid;
-  border-color: rgb(255, 225, 115);
+  background-color: rgb(255, 225, 115);
+  color: rgb(30, 30, 30);
+  transition: 0.5s;
 }
 
 #home .me {
-  position: absolute;
-  bottom: 0;
-  right: 25px;
-  max-height: 90vh;
-  scale: 75%;
+  max-height: 75vh;
+  margin-left: 20px;
   border: solid;
   border-color: rgb(255, 225, 115);
-  border-width: 8px;
+  border-width: 5px;
+  position: relative;
+  top: 30px;
 }
 
-#portfolio {
-  background-color: rgb(40, 40, 40);
-  text-align: center;
-  color: whitesmoke;
-}
+/* PORTFOLIO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 #portfolio .content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#portfolio p,
+#contact p {
+  margin-top: 5px;
+  margin-bottom: 25px;
 }
 
 #portfolio .content .imgBx {
   position: relative;
+  max-width: 300px;
+  margin-inline: 20px;
 }
 
 #portfolio .content .imgBx img {
-  margin-top: 25px;
-  margin-bottom: 20px;
   max-height: 300px;
+  padding: 5px;
+}
+
+#portfolio .content .imgBx p {
+  max-width: 300px;
+  text-align: center;
+  padding-inline: 10px;
+}
+
+@keyframes oscillate {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+#clouds,
+#fireworks,
+#stars {
+  cursor: pointer;
+  filter: grayscale(100%) contrast(1.5) brightness(0.8);
+}
+
+#clouds:hover,
+#fireworks:hover,
+#stars:hover {
+  transform: translateY(-5px);
+  animation: oscillate 0.5s infinite alternate;
+  filter: grayscale(0%);
+  transition: 0.5s;
 }
 
 #portfolio,
 #contact {
-  position: relative;
-  background: rgb(40, 40, 40);
-  min-height: 100vh;
-  padding: 120px 100px;
-  color: rgb(255, 63, 63);
-}
-
-#contact .content {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
-  margin: 40px 0;
-}
-
-#contact .content a {
-  background-color: rgb(98, 98, 98);
-  height: 120px;
   display: flex;
+  flex-direction: column;
+  padding: 120px 100px;
+  background-color: rgb(30, 30, 30);
+  color: whitesmoke;
   justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  font-size: 1.2em;
-  color: rgb(255, 225, 115);
-  transition: 0.25s;
+  min-height: 100vh;
+  text-align: center;
 }
+
+/* CONTACT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .sectiontext h2 {
   color: rgb(255, 225, 115);
   font-size: 2em;
 }
 
-#contact .content a:hover {
-  background-color: rgb(255, 225, 115);
-  color: rgb(40, 40, 40);
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-text {
   padding: 10px;
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 
 .fa-envelope::before {
@@ -206,6 +224,8 @@ header ul li:hover a {
   letter-spacing: 1px;
 }
 
+/* RESPONSIVE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 @media (max-width: 900px) {
   header {
     padding: 20px 50px;
@@ -220,6 +240,10 @@ header ul li:hover a {
     flex-direction: column;
     padding-bottom: 0;
   }
+
+  #home .me {
+    scale: 80%;
+  }
   #home .content h2 {
     font-size: 4em;
   }
@@ -227,34 +251,173 @@ header ul li:hover a {
     max-width: 160px;
     padding: 10px 20px;
   }
-  #home .me {
-    display: none;
-  }
-  .sectiontext h2 {
-    font-size: 2em;
-    text-align: center;
-  }
-  #portfolio,
-  #contact {
-    padding: 100px 50px;
-  }
-  #portfolio .content,
-  #contact .content {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 700px) {
   #home .content h2 {
     font-size: 3em;
   }
-  /* #home .me {
-  } */
-  #portfolio .content,
-  #contact .content {
-    grid-template-columns: repeat(1, 1fr);
-  }
+
   #contact .content a {
-    height: 80px;
+    font-size: 90%;
   }
+}
+
+/* CLOUD PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#cloud-section {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-image: url(clouds.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.cloud-text {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cloud-text h1 {
+  font-size: 40px;
+  padding: 30px;
+  color: whitesmoke;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cloud-text p {
+  font-size: 20px;
+  padding: 20px;
+  color: whitesmoke;
+  font-weight: 500;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cloud-text a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  border: solid;
+  border-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(225, 225, 225, 0.3);
+}
+
+.cloud-text a:hover {
+  filter: brightness(1.1);
+}
+
+/* FIREWORKS PAGE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#fireworks-section {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-image: url(fireworks.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.fireworks-text {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.fireworks-text h1 {
+  font-size: 40px;
+  padding: 30px;
+  color: whitesmoke;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.fireworks-text p {
+  font-size: 20px;
+  padding: 20px;
+  color: whitesmoke;
+  font-weight: 500;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.fireworks-text a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  border: solid;
+  border-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(225, 225, 225, 0.3);
+}
+
+.fireworks-text a:hover {
+  filter: brightness(1.1);
+}
+
+/* STARS SECTION~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#stars-section {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-image: url(stars.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.stars-text {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.stars-text h1 {
+  font-size: 40px;
+  padding: 30px;
+  color: whitesmoke;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.stars-text p {
+  font-size: 20px;
+  padding: 20px;
+  color: whitesmoke;
+  font-weight: 500;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.stars-text a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  border: solid;
+  border-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(225, 225, 225, 0.3);
+}
+
+.stars-text a:hover {
+  filter: brightness(1.1);
 }
