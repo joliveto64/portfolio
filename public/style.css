@@ -63,6 +63,19 @@ header ul li:hover a {
   color: rgb(255, 225, 115);
 }
 
+#search-results-string {
+  position: fixed;
+  color: rgb(30, 30, 30);
+  background-color: whitesmoke;
+  margin-top: 5px;
+  border-radius: 5px;
+  z-index: 20000;
+}
+
+.hidden {
+  display: none;
+}
+
 /* HOME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 #home {

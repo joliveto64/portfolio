@@ -28,13 +28,11 @@
       <div class="gcse-searchbox-only"></div> -->
       <ul class="nav">
         <li>
-          <input
-            type="text"
-            placeholder="Lookin' for something?"
-            id="search-input"
-          />
+          <input type="text" id="search-input" />
           <button id="search-button">search</button>
-          <div id="search-results"></div>
+          <div id="search-results">
+            <p class="hidden" id="search-results-string"></p>
+          </div>
         </li>
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -62,22 +60,28 @@
       </div>
       <div class="content">
         <div class="imgBx">
-          <img src="clouds.png" alt="Img" id="clouds" />
+          <a href="clouds.html" class="image-link">
+            <img src="clouds.png" alt="Img" id="clouds" />
+          </a>
           <p>
             This project is a dynamic, real-time cloud simulation system that
             was created using the p5 editor!
           </p>
         </div>
-        <div class="imgBx">
-          <img src="fireworks.png" alt="Img" id="fireworks" />
+        <div class="imgBx" class="image-link">
+          <a href="fireworks.html">
+            <img src="fireworks.png" alt="Img" id="fireworks" />
+          </a>
           <p>
             This project (created in p5) is a touch-capable fireworks demo which
             features randomized stars, clouds, smoke, cityscape and, of course,
             fireworks!
           </p>
         </div>
-        <div class="imgBx">
-          <img src="stars.png" alt="Img" id="stars" />
+        <div class="imgBx" class="image-link">
+          <a href="stars.html">
+            <img src="stars.png" alt="Img" id="stars" />
+          </a>
           <p>
             This project (created in p5) is a warp-speed animation that allows
             you to click to slow down and move the stars around!
