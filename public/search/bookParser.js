@@ -13,7 +13,7 @@ class Book {
 }
 
 class Chapter {
-  constructor(id = 0, title = '', paragraphs = []) {
+  constructor(id = '', title = '', paragraphs = []) {
     this.id = id;
     this.title = title;
     this.paragraphs = paragraphs;
@@ -37,13 +37,12 @@ class Chapter {
  * @param {string} fileContent 
  * @returns Book object
  */
-function parseBookFromText(fileContent) {
+async function parseBookFromText(fileContent) {
   const lines = fileContent.split(/\r?\n/); // Split into list of lines
   const book = new Book(); // Create an empty book
 
-  book.id = generateBookId(fileContent);
+  book.id = await generateBookId(fileContent);
 
-  let lastChapterId = -1;
   let currentChapter = null;
   let currentParagraph = '';
 
@@ -55,16 +54,17 @@ function parseBookFromText(fileContent) {
     } else if (/^AUTHOR\./i.test(line)) {
       book.author = line.replace(/AUTHOR\./i, '').trim();
 
-    } else if (/^CHAPTER \d+\./i.test(lowerLine)) {
+    } else if (/^CHAPTER [\-\dIVX]+/i.test(line)) {
       endCurrentChapter(book, currentChapter, currentParagraph);
-      const [chapterIdentifier, chapterTitle] = line.split('. ');
-      lastChapterId = parseInt(chapterIdentifier.replace(/CHAPTER/i, '').trim());
-      currentChapter = new Chapter(lastChapterId, chapterTitle);
+      const [prefix, suffix] = line.split('.');
+      const chapterId = prefix ? prefix.replace(/CHAPTER/i, '').trim() : '';
+      const chapterTitle = suffix ? suffix.trim() : '';
+      currentChapter = new Chapter(chapterId, chapterTitle);
       currentParagraph = '';
 
     } else if (lowerLine === 'prologue' || lowerLine === 'epilogue') {
       endCurrentChapter(book, currentChapter, currentParagraph);
-      currentChapter = new Chapter(++lastChapterId, line);
+      currentChapter = new Chapter(line.trim(), line.trim());
       currentParagraph = '';
 
     } else if (lowerLine != '' && currentChapter) {
@@ -77,6 +77,8 @@ function parseBookFromText(fileContent) {
   }
 
   endCurrentChapter(book, currentChapter, currentParagraph);
+
+  console.log("ingested book!", book.chapters.length, book.id);
 
   return book;
 }
@@ -100,6 +102,20 @@ function endCurrentChapter(book, currentChapter, currentParagraph) {
   if (currentChapter) {
     endCurrentParagraph(book, currentChapter, currentParagraph);
     book.chapters.push(currentChapter);
+    console.log("-got chapter", currentChapter.id, currentChapter.title, currentChapter.paragraphs.length)
+
+    if (book.snippet === '') {
+      let snippet = '';
+      for (const p in currentChapter.paragraphs) {
+        snippet += currentChapter.paragraphs[p];
+        if (snippet.length > 300) {
+          snippet = snippet.substring(0, 300);
+          break;
+        }
+      }
+
+      book.snippet = snippet;
+    }
   }
 }
 
@@ -112,10 +128,6 @@ function endCurrentChapter(book, currentChapter, currentParagraph) {
 function endCurrentParagraph(book, currentChapter, currentParagraph) {
   if (currentChapter && currentParagraph !== '') {
     currentChapter.paragraphs.push(currentParagraph);
-
-    if (book.snippet === '') {
-      book.snippet = currentParagraph.slice(0, Math.min(300, currentParagraph.length));
-    }
   }
 }
 
@@ -130,8 +142,10 @@ function ingestBook(bookFile, onReady) {
   // This is the callback that triggers once all the file reading is complete
   reader.onload = function() {
     const bookContents = reader.result;
-    const book = parseBookFromText(bookContents);  // This is the function in bookParser.js
-    onReady(book);
+    parseBookFromText(bookContents).then((book) => {
+      // The book has been parsed!
+      onReady(book);
+    });
   };
 
   reader.readAsText(bookFile);

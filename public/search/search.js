@@ -58,7 +58,7 @@ function search(searchText) {
     // Example of how to add a search result:
     //  rawSearchResults.push(new SearchResult(
     //    book.title,
-    //    `Chater ${book.chapters[c].id}: ${book.chapters[c].title} — Paragraph #${p+1}`,
+    //    `Chater ${book.chapters[c].id} ${book.chapters[c].title} — Paragraph #${p+1}`,
     //    book.chapters[p].paragraphs[p],
     //    // new params you added (eg poop)
     //  ));
@@ -225,6 +225,7 @@ function createBookInputElement() {
   fileInput.id = 'inputFile';
   fileInput.className = 'custom-file-input';
   fileInput.accept = '.txt';
+  fileInput.multiple = true;
   fileInput.addEventListener('change', () => {
     const files = Array.from(fileInput.files)
     files.forEach((file) => { // go thru all files selected
