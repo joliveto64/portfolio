@@ -12,22 +12,19 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 100px;
+  padding: 10px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 10000;
-  transition: 0.25s ease-in-out;
 }
 
 .hide {
   background-color: rgba(30, 30, 30, 1);
   transition: all 0.5s ease-in-out;
-  box-shadow: 0 4px 6px rgb(30, 30, 30, 1);
 }
 
 header .logo {
-  position: relative;
   color: whitesmoke;
   text-decoration: none;
   font-weight: 700;
@@ -41,8 +38,8 @@ header .logo:hover {
 }
 
 header ul {
-  position: relative;
   display: flex;
+  flex-direction: row;
   gap: 40px;
 }
 
@@ -63,13 +60,47 @@ header ul li:hover a {
   color: rgb(255, 225, 115);
 }
 
+#search-input {
+  padding: 5px;
+  background-color: whitesmoke;
+  border: none;
+  color: rgb(30, 30, 30);
+  letter-spacing: 0.5px;
+  font-size: 1em;
+  margin-inline-end: 5px;
+}
+
 #search-results-string {
   position: fixed;
   color: rgb(30, 30, 30);
-  background-color: whitesmoke;
+  background-color: rgb(255, 255, 255);
   margin-top: 5px;
-  border-radius: 5px;
   z-index: 20000;
+  cursor: pointer;
+  padding: 5px;
+}
+
+#search-results-string:hover {
+  filter: brightness(0.8);
+}
+
+#search-button {
+  cursor: pointer;
+  border: none;
+  padding: 5px;
+  background-color: rgb(98, 98, 98);
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 1em;
+  padding-inline: 15px;
+  transition: 0.25s;
+  color: rgb(255, 225, 115);
+}
+
+#search-button:hover {
+  background-color: rgb(255, 225, 115);
+  transition: 0.25s;
+  color: rgb(30, 30, 30);
 }
 
 .hidden {
@@ -128,11 +159,9 @@ header ul li:hover a {
 
 #home .me {
   max-height: 75vh;
-  margin-left: 20px;
   border: solid;
   border-color: rgb(255, 225, 115);
   border-width: 5px;
-  position: relative;
   top: 30px;
 }
 
@@ -140,7 +169,7 @@ header ul li:hover a {
 
 #portfolio .content {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
@@ -153,18 +182,14 @@ header ul li:hover a {
 #portfolio .content .imgBx {
   position: relative;
   max-width: 300px;
-  margin-inline: 20px;
 }
 
 #portfolio .content .imgBx img {
   max-height: 300px;
-  padding: 5px;
 }
 
 #portfolio .content .imgBx p {
   max-width: 300px;
-  text-align: center;
-  padding-inline: 10px;
 }
 
 @keyframes oscillate {
@@ -214,24 +239,51 @@ header ul li:hover a {
 .contact-buttons {
   display: flex;
   flex-direction: column;
+  text-decoration: none;
 }
 
 .contact-text {
   padding: 10px;
   font-size: 1.5em;
+  text-decoration: none;
+  color: rgb(30, 30, 30);
 }
 
 .fa-envelope::before {
+  color: rgb(30, 30, 30);
   font-size: 1.2em;
 }
 
 .fa-phone::before {
+  color: rgb(30, 30, 30);
   font-size: 1.2em;
+}
+
+.mail {
+  background-color: rgb(255, 225, 115);
+  margin: 10px;
+  padding: 10px;
+  height: 45px;
+}
+
+.mail a {
+  text-decoration: none;
+}
+
+.phone {
+  background-color: rgb(255, 225, 115);
+  margin: 10px;
+  padding: 10px;
+  height: 45px;
+}
+
+.phone a {
+  text-decoration: none;
 }
 
 .thanks {
   text-align: center;
-  padding-top: 50px;
+  padding-top: 20px;
   font-style: italic;
   font-weight: 300;
   letter-spacing: 1px;
@@ -271,8 +323,9 @@ header ul li:hover a {
     font-size: 3em;
   }
 
-  #contact .content a {
-    font-size: 90%;
+  .mail,
+  .phone {
+    font-size: 70%;
   }
 }
 
