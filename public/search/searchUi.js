@@ -1,104 +1,28 @@
-/*************************************************/
-/* Data types below                              */
-/*************************************************/
-
-class SearchResult {
-  constructor(title = '', subtitle = '', description = '') { // This line sets the default values in case you don't pass in all the parameters
-    this.title = title;
-    this.subtitle = subtitle;
-    this.description = description;
-    // TODO(john): (do this SECOND) Add extra fields here that you can use to help sort your results
-    // Here is an example with a new 'poop' param:
-    //  constructor(title = '', subtitle = '', description = '', poop = 0) {
-    //    this.title = title;
-    //    this.subtitle = subtitle;
-    //    this.description = description;
-    //    this.poop = poop;
-    //  }
-  }
-}
-
-const allBooks = {};
-const selectedBooks = {};
-
-/*************************************************/
-/* Search algorithm below                        */
-/*************************************************/
-
 /**
- * Performs the actual search and displays the results.
- * @param {string} searchText 
+ * This is what the UI calls to do a search. 
+ * It does this by calling the search algorithm (from searchAlgorithm.js).
+ * 
+ * This function also handles some corner cases (ie no search) and passing the search
+ * results onto the UI, so the search algorithm doesn't have to think
+ * about that stuff.
+ * param: {string} searchText - the text to search for
  */
-function search(searchText) {
+function handleSearch(searchText) {
   if (searchText.trim() == '') {
-    const sortedListOfBooks = Object.values(allBooks).sort((a, b) => a.title.localeCompare(b.title));
+    const sortedListOfBooks = Object.values(allBooks).sort((bookA, bookB) => bookA.title.localeCompare(bookB.title));
     displayResults(sortedListOfBooks, /* isSearchResults */ false);  
     return;
   }
 
-  const sortedListOfSelected = Object.values(selectedBooks).sort((a, b) => a.title.localeCompare(b.title));
-  const rawSearchResults = [];
-
-  sortedListOfSelected.forEach(book => {
-    console.log(`Searching through ${book.title}...`);
-    // TODO(john): (do this FIRST) Go through this Book and find any paragraphs that match the search query.
-    //
-    // You can access the following properties:
-    //  book.id = an id for the book, shouldn't need it unless you need to tell books apart
-    //  book.title = the title of the book
-    //  book.author = the author of the book
-    //  book.snippet = the first ~300 words of the book
-    //  book.chapters = array of Chapters:
-    //
-    //  Chapters have the following properties:
-    //   book.chapters[i].id = the id of the chapter, usually the chapter number
-    //   book.chapters[i].title = the title of the chapter
-    //   book.chapters[i].paragraphs = array of strings, each representing a paragraph
-    //
-    // Example of how to add a search result:
-    //  rawSearchResults.push(new SearchResult(
-    //    book.title,
-    //    `Chater ${book.chapters[c].id} ${book.chapters[c].title} — Paragraph #${p+1}`,
-    //    book.chapters[p].paragraphs[p],
-    //    // new params you added (eg poop)
-    //  ));
-    //
-    // Some ideas to consider for finding matches (some of these are good ideas, some are bad, just planting some seeds):
-    //  - Could start by seeing if the entire query appears in a paragraph to get something going
-    //  - Splitting words like you did before is a good idea
-    //  - Calculate stats / scores here for a given search result (that'll help you below when ranking your results) (see the 'TODO(john)' near the top of the file)
-  });
-
-  // Sorting is complicated. There are a million algorithms to do it, some better, some worse. This sort
-  // function we use picks a good algorithm that's efficient. Regardless of what algorithm is used, the code
-  // has no way to know how to compare two SearchResults. It doesn't know if you want to sort by title, or
-  // by subtitle, or by description, or by poop. It doesn't know if you want to sort ascending or descending.
-  // So, we pass in a callback (called a comparator) to do just that. It takes in 2 of the items to be sorted
-  // and returns an integer that says which of the items is better: 0 means they're equal, negative means
-  // searchResult1 is better, positive means searchResult2 is better.
-  const sortedSearchResults = rawSearchResults.sort((searchResult1, searchResult2) => {
-    // TODO(john): (do this THIRD) implement comparator to enable ranking results
-    // Some ideas to consider (some of these are good ideas, some are bad, just planting some seeds):
-    //  - Maybe if a larger % of the result was in the query, that's better?
-    //  - Maybe if more words match the query, that's better?
-    //  - Maybe matches on common words (eg 'the') are less important than matches on rare words?
-    //  - Maybe matches earlier in the query are more important than matches later in the query?
-    //  - Maybe strings of words matching is better (eg query 'cats and dogs' matches 'cats and dogs' better than 'cats some more words dogs')?
-    //  - Maybe matches in order are better (eg query 'cats and dogs' matches 'cats ... dogs' better than 'dogs ... cats')?
-    return 0;
-  });
-
-  displayResults(sortedSearchResults, /* isSearchResults */ true);  
+  const results = search(Object.values(selectedBooks), searchText);
+  displayResults(results, /* isSearchResults */ true);  
 }
 
+/** These are all the Book objects (see bookParser.js for definition of Book) that the use has uploaded */
+const allBooks = {};
 
-
-/*************************************************/
-/* Search UI below                               */
-/*************************************************/
-
-const ANIMATION_DURATION_MS = 200;
-const FADE_ANIMATION_STEPS = 10;
+/** These are the Book objects (see bookParser.js for definition of Book) the user has clicked and selected (search these!) */
+const selectedBooks = {};
 
 // This change listener will trigger DEBOUNCE_TIME_MS after the user stops typing.
 // This is useful to make sure you don't trigger your search way too often needlessly.
@@ -109,7 +33,7 @@ const DEBOUNCE_TIME_MS = 300;
 document.getElementById('searchBar').addEventListener('input', (e) => {
   clearTimeout(debounceTimeout);
   debounceTimeout = setTimeout(() => {
-    search(e.target.value);
+    handleSearch(e.target.value);
   }, DEBOUNCE_TIME_MS);
 });
 document.addEventListener("DOMContentLoaded", function() {
@@ -120,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
  * Takes this list of search results and puts it into the UI
  * This works by creating a new searchRestuls div, populating it, then swapping the old for the new.
  * We do this so we can fade out the old and fade in the new (oooooh ahhhhhh fancy).
- * @param {SearchResult[] or Book[]} results 
+ * param: {SearchResult[] or Book[]} results 
  */
 async function displayResults(results, isSearchResults) {
   const oldResultsDiv = document.getElementById("results");
@@ -156,8 +80,8 @@ async function displayResults(results, isSearchResults) {
 
 /**
  * Given one search result, create a DOM element to display it.
- * @param {SearchResult} searchResult 
- * @returns a div element containing the search result
+ * param: {SearchResult} searchResult 
+ * returns: a div element containing the search result
  */
 function createSearchResultElement(searchResult) {
   const resultDiv = document.createElement("div");
@@ -181,8 +105,8 @@ function createSearchResultElement(searchResult) {
 
 /**
  * Given one book result, create a DOM element to display it.
- * @param {Book} bookResult 
- * @returns a div element containing the book result
+ * param: {Book} bookResult 
+ * returns: a div element containing the book result
  */
 function createBookResultElement(bookResult) {
   const resultDiv = document.createElement("div");
@@ -284,7 +208,7 @@ function clearSearchAndRefreshUi() {
   searchBar.disabled = disabled;
   if (searchBar.value === "") {
     // If already empty, then manually call search to update the UI
-    search("");
+    handleSearch("");
   } else {
     // Otherwise clear it and let the event listener handle it
     document.getElementById("searchBar").value = "";
@@ -292,33 +216,24 @@ function clearSearchAndRefreshUi() {
 }
 
 /**
- * @param {number} timeToSleepMillis 
- * @param {*} callback 
- * @returns promise that resolves after (timeToSleepMillis) has passed
- */
-function sleep(timeToSleepMillis, callback) {
-  return new Promise((resolve) => setTimeout(() => {
-    callback();
-    resolve();
-  }, timeToSleepMillis));
-}
-
-/**
  * Returns value clamped between min and max
  * (eg if min is 0, and max is 1, we'll return value unless it's <0 or >1 in which case we'll return 0 or 1 respectively)
- * @param {number} min 
- * @param {number} max 
- * @param {number} value 
+ * param: {number} min 
+ * param: {number} max 
+ * param: {number} value 
  */
 function clamp(min, max, value) {
   return Math.max(min, Math.min(max, value));
 }
 
+const ANIMATION_DURATION_MS = 200;
+const FADE_ANIMATION_STEPS = 10;
+
 /**
  * This is kind of a janky way to do this - there are libraries that do this better, but w/e
- * @param {*} element 
- * @param {boolean} fadeIn
- * @returns promise that resolves after the fade out is complete
+ * param: {*} element 
+ * param: {boolean} fadeIn
+ * returns: promise that resolves after the fade out is complete
  */
 function fade(element, fadeIn) {
   const sleepBtwnSteps = ANIMATION_DURATION_MS / FADE_ANIMATION_STEPS;

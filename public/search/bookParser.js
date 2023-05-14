@@ -3,22 +3,24 @@
 /*************************************************/
 
 class Book {
-  constructor(id='', title = '', author = '', snippet = '', chapters = []) {
+  constructor(id='', title = '', author = '', snippet = '', paragraphs =[]) {//chapters = []) {
     this.id = id;
     this.title = title;
     this.author = author;
     this.snippet = snippet;
-    this.chapters = chapters;
+    this.paragraphs = paragraphs;
+    // this.chapters = chapters; // this is an array of Chapter (REMOVED FOR SIMPLICITY)
   }
 }
 
-class Chapter {
-  constructor(id = '', title = '', paragraphs = []) {
-    this.id = id;
-    this.title = title;
-    this.paragraphs = paragraphs;
-  }
-}
+// (REMOVED FOR SIMPLICITY)
+// class Chapter {
+//   constructor(id = '', title = '', paragraphs = []) {
+//     this.id = id;
+//     this.title = title;
+//     this.paragraphs = paragraphs; // this is an array of strings
+//   }
+// }
 
 /*************************************************/
 /* Book parsing algorithm below                  */
@@ -34,8 +36,8 @@ class Chapter {
  *  - Chapters are in order
  *  - A double line break means the end of a paragraph
  *  - File is in utf-8 format (https://en.wikipedia.org/wiki/UTF-8)
- * @param {string} fileContent 
- * @returns Book object
+ * param: {string} fileContent 
+ * returns: Book object
  */
 async function parseBookFromText(fileContent) {
   const lines = fileContent.split(/\r?\n/); // Split into list of lines
@@ -43,7 +45,7 @@ async function parseBookFromText(fileContent) {
 
   book.id = await generateBookId(fileContent);
 
-  let currentChapter = null;
+  // let currentChapter = null;
   let currentParagraph = '';
 
   for (const line of lines) {
@@ -55,30 +57,46 @@ async function parseBookFromText(fileContent) {
       book.author = line.replace(/AUTHOR\./i, '').trim();
 
     } else if (/^CHAPTER [\-\dIVX]+/i.test(line)) {
-      endCurrentChapter(book, currentChapter, currentParagraph);
-      const [prefix, suffix] = line.split('.');
-      const chapterId = prefix ? prefix.replace(/CHAPTER/i, '').trim() : '';
-      const chapterTitle = suffix ? suffix.trim() : '';
-      currentChapter = new Chapter(chapterId, chapterTitle);
-      currentParagraph = '';
+      // endCurrentChapter(book, currentChapter, currentParagraph);
+      // const [prefix, suffix] = line.split('.');
+      // const chapterId = prefix ? prefix.replace(/CHAPTER/i, '').trim() : '';
+      // const chapterTitle = suffix ? suffix.trim() : '';
+      // currentChapter = new Chapter(chapterId, chapterTitle);
+      if (currentParagraph) {
+        book.paragraphs.push(currentParagraph);
+      }
+      currentParagraph = line + ' ';
 
     } else if (lowerLine === 'prologue' || lowerLine === 'epilogue') {
-      endCurrentChapter(book, currentChapter, currentParagraph);
-      currentChapter = new Chapter(line.trim(), line.trim());
-      currentParagraph = '';
+      // endCurrentChapter(book, currentChapter, currentParagraph);
+      // currentChapter = new Chapter(line.trim(), line.trim());
+      if (currentParagraph) {
+        book.paragraphs.push(currentParagraph);
+      }
+      currentParagraph = line + ' ';
 
-    } else if (lowerLine != '' && currentChapter) {
-      currentParagraph += ' ' + line;
+    } else if (lowerLine != '') { // && currentChapter) {
+      currentParagraph += line + ' ';
+
+      if (!book.snippet || book.snippet.length < 300) {
+        book.snippet += line + ' ';
+        if (book.snippet.length > 300) {
+          book.snippet = book.snippet.substring(0, 300);
+        }
+      }
 
     } else if (lowerLine == '' && currentParagraph != '') {
-      endCurrentParagraph(book, currentChapter, currentParagraph);
+      // endCurrentParagraph(book, currentChapter, currentParagraph);
+      if (currentParagraph) {
+        book.paragraphs.push(currentParagraph);
+      }
       currentParagraph = '';
     }
   }
 
-  endCurrentChapter(book, currentChapter, currentParagraph);
+  // endCurrentChapter(book, currentChapter, currentParagraph);
 
-  console.log("ingested book!", book.chapters.length, book.id);
+  console.log("ingested book!");//, book.chapters.length, book.id);
 
   return book;
 }
@@ -92,49 +110,51 @@ async function generateBookId(fileContent) {
   return hashHex;
 }
 
-/**
- * Adds the chapter and paragraph to the book, if they're valid (also generates the snippet if it's not set yet)
- * @param {Book} book 
- * @param {Chapter} currentChapter 
- * @param {string} currentParagraph 
- */
-function endCurrentChapter(book, currentChapter, currentParagraph) {
-  if (currentChapter) {
-    endCurrentParagraph(book, currentChapter, currentParagraph);
-    book.chapters.push(currentChapter);
-    console.log("-got chapter", currentChapter.id, currentChapter.title, currentChapter.paragraphs.length)
+// (REMOVED FOR SIMPLICITY)
+// /**
+//  * Adds the chapter and paragraph to the book, if they're valid (also generates the snippet if it's not set yet)
+//  * @param {Book} book 
+//  * @param {Chapter} currentChapter 
+//  * @param {string} currentParagraph 
+//  */
+// function endCurrentChapter(book, currentChapter, currentParagraph) {
+//   if (currentChapter) {
+//     endCurrentParagraph(book, currentChapter, currentParagraph);
+//     book.chapters.push(currentChapter);
+//     console.log("-got chapter", currentChapter.id, currentChapter.title, currentChapter.paragraphs.length)
 
-    if (book.snippet === '') {
-      let snippet = '';
-      for (const p in currentChapter.paragraphs) {
-        snippet += currentChapter.paragraphs[p];
-        if (snippet.length > 300) {
-          snippet = snippet.substring(0, 300);
-          break;
-        }
-      }
+//     if (book.snippet === '') {
+//       let snippet = '';
+//       for (const p in currentChapter.paragraphs) {
+//         snippet += currentChapter.paragraphs[p];
+//         if (snippet.length > 300) {
+//           snippet = snippet.substring(0, 300);
+//           break;
+//         }
+//       }
 
-      book.snippet = snippet;
-    }
-  }
-}
+//       book.snippet = snippet;
+//     }
+//   }
+// }
 
-/**
- * Adds the paragraph to the chapter, if valid (also generates the snippet if it's not set yet)
- * @param {Book} book 
- * @param {Chapter} currentChapter 
- * @param {string} currentParagraph 
- */
-function endCurrentParagraph(book, currentChapter, currentParagraph) {
-  if (currentChapter && currentParagraph !== '') {
-    currentChapter.paragraphs.push(currentParagraph);
-  }
-}
+// (REMOVED FOR SIMPLICITY)
+// /**
+//  * Adds the paragraph to the chapter, if valid (also generates the snippet if it's not set yet)
+//  * @param {Book} book 
+//  * @param {Chapter} currentChapter 
+//  * @param {string} currentParagraph 
+//  */
+// function endCurrentParagraph(book, currentChapter, currentParagraph) {
+//   if (currentChapter && currentParagraph !== '') {
+//     currentChapter.paragraphs.push(currentParagraph);
+//   }
+// }
 
 /**
  * Ingests a book from a file and calls the callback when done.
- * @param {File} bookFile 
- * @param {Callback} onReady callback that will be called with the Book object when done
+ * param: {File} bookFile 
+ * param: {Callback} onReady callback that will be called with the Book object when done
  */
 function ingestBook(bookFile, onReady) {
   const reader = new FileReader();
