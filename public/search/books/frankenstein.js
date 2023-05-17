@@ -1,4 +1,5 @@
-﻿TITLE. Frankenstein
+﻿const frankensteinText=`
+TITLE. Frankenstein
 AUTHOR. Mary Wollstonecraft (Godwin) Shelley
 
 CHAPTER I. Letter 1
@@ -7317,3 +7318,4 @@ Farewell.”
 He sprang from the cabin-window as he said this, upon the ice raft
 which lay close to the vessel. He was soon borne away by the waves and
 lost in darkness and distance.
+`;

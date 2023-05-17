@@ -1,4 +1,5 @@
-﻿TITLE. The Picture of Dorian Gray
+﻿const dorianGrayText=`
+TITLE. The Picture of Dorian Gray
 AUTHOR. Oscar Wilde
 
 PROLOGUE
@@ -8491,3 +8492,4 @@ exquisite youth and beauty. Lying on the floor was a dead man, in
 evening dress, with a knife in his heart. He was withered, wrinkled,
 and loathsome of visage. It was not till they had examined the rings
 that they recognized who it was.
+`;

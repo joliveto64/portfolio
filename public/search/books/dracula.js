@@ -1,4 +1,5 @@
-﻿TITLE. Dracula
+﻿const draculaText = `
+TITLE. Dracula
 AUTHOR. Bram Stoker
 
 
@@ -15335,3 +15336,4 @@ sweetness and loving care; later on he will understand how some men so
 loved her, that they did dare much for her sake."
 
 JONATHAN HARKER.
+`;

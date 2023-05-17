@@ -1,30 +1,18 @@
 /*************************************************/
-/* Data types below                              */
-/*************************************************/
-
-class Book {
-  constructor(id='', title = '', author = '', snippet = '', paragraphs =[]) {//chapters = []) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.snippet = snippet;
-    this.paragraphs = paragraphs;
-    // this.chapters = chapters; // this is an array of Chapter (REMOVED FOR SIMPLICITY)
-  }
-}
-
-// (REMOVED FOR SIMPLICITY)
-// class Chapter {
-//   constructor(id = '', title = '', paragraphs = []) {
-//     this.id = id;
-//     this.title = title;
-//     this.paragraphs = paragraphs; // this is an array of strings
-//   }
-// }
-
-/*************************************************/
 /* Book parsing algorithm below                  */
 /*************************************************/
+
+/**
+ * Ingests all the books and call the callback for each when done.
+ * param: {Callback} onReady callback that will be called with the Book object when done
+ */
+function ingestAllBooks(onReady) {
+  parseBookFromText(dorianGrayText).then((book) => onReady(book));
+  parseBookFromText(draculaText).then((book) => onReady(book));
+  parseBookFromText(frankensteinText).then((book) => onReady(book));
+  parseBookFromText(mobyDickText).then((book) => onReady(book));
+}
+
 
 /**
  * Creates a book object from a string of the contents.
@@ -110,63 +98,3 @@ async function generateBookId(fileContent) {
   return hashHex;
 }
 
-// (REMOVED FOR SIMPLICITY)
-// /**
-//  * Adds the chapter and paragraph to the book, if they're valid (also generates the snippet if it's not set yet)
-//  * @param {Book} book 
-//  * @param {Chapter} currentChapter 
-//  * @param {string} currentParagraph 
-//  */
-// function endCurrentChapter(book, currentChapter, currentParagraph) {
-//   if (currentChapter) {
-//     endCurrentParagraph(book, currentChapter, currentParagraph);
-//     book.chapters.push(currentChapter);
-//     console.log("-got chapter", currentChapter.id, currentChapter.title, currentChapter.paragraphs.length)
-
-//     if (book.snippet === '') {
-//       let snippet = '';
-//       for (const p in currentChapter.paragraphs) {
-//         snippet += currentChapter.paragraphs[p];
-//         if (snippet.length > 300) {
-//           snippet = snippet.substring(0, 300);
-//           break;
-//         }
-//       }
-
-//       book.snippet = snippet;
-//     }
-//   }
-// }
-
-// (REMOVED FOR SIMPLICITY)
-// /**
-//  * Adds the paragraph to the chapter, if valid (also generates the snippet if it's not set yet)
-//  * @param {Book} book 
-//  * @param {Chapter} currentChapter 
-//  * @param {string} currentParagraph 
-//  */
-// function endCurrentParagraph(book, currentChapter, currentParagraph) {
-//   if (currentChapter && currentParagraph !== '') {
-//     currentChapter.paragraphs.push(currentParagraph);
-//   }
-// }
-
-/**
- * Ingests a book from a file and calls the callback when done.
- * param: {File} bookFile 
- * param: {Callback} onReady callback that will be called with the Book object when done
- */
-function ingestBook(bookFile, onReady) {
-  const reader = new FileReader();
-
-  // This is the callback that triggers once all the file reading is complete
-  reader.onload = function() {
-    const bookContents = reader.result;
-    parseBookFromText(bookContents).then((book) => {
-      // The book has been parsed!
-      onReady(book);
-    });
-  };
-
-  reader.readAsText(bookFile);
-}

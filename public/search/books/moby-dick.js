@@ -1,3 +1,4 @@
+const mobyDickText=`
 TITLE. Moby Dick
 AUTHOR. Herman Melville
 
@@ -21117,3 +21118,4 @@ the savage sea-hawks sailed with sheathed beaks. On the second day, a
 sail drew near, nearer, and picked me up at last. It was the
 devious-cruising Rachel, that in her retracing search after her missing
 children, only found another orphan.
+`;
