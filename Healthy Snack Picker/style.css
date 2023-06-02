@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+}
+
+.container {
+  font-family: sans-serif;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: #668790;
+  color: whitesmoke;
+  box-sizing: border-box;
+}
+
+#selectors,
+#sort-and-find {
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+h1 {
+  margin: 0px 0px 10px 0px;
+  font-size: 2.5rem;
+}
+
+#calorie-select,
+#flavor-select,
+#sort-options {
+  border: none;
+  padding: 5px 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-left: 5px;
+  color: rgb(100, 100, 100);
+  background-color: rgb(255, 255, 255);
+}
+
+#calorie-select:hover,
+#flavor-select:hover,
+#sort-options:hover {
+  border: none;
+  border-radius: none;
+}
+
+.snacks-list {
+  overflow-y: scroll;
+  padding: 20px;
+  background-color: white;
+  border: none;
+  transition: 0.5s;
+  height: 60%;
+  width: 300px;
+  max-width: 100%;
+}
+
+.snacks-list:hover {
+  box-shadow: 0px 0px 15px rgba(40, 40, 40, 0.5);
+  transform: scale(1.1) translateY(-30px);
+}
+
+hr {
+  width: 50%;
+  min-width: 400px;
+  border-style: solid;
+  border-color: whitesmoke;
+  border-width: 1px;
+  margin-bottom: 20px;
+}
+
+#find-snacks {
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  background-color: #a5bbc2;
+  color: white;
+  font-size: 1.3rem;
+  margin-left: 20px;
+  font-weight: bold;
+  transition: 0.25s;
+}
+
+#find-snacks:hover {
+  filter: brightness(1.1);
+  background-color: #adc1c6;
+  transition: 0.25s;
+}
+
+#name {
+  color: #5b7e88;
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+}
+
+#info {
+  color: rgb(100, 100, 100);
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+#no-results {
+  color: rgb(100, 100, 100);
+}
