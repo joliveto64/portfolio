@@ -1,4 +1,4 @@
-import { healthyFoods } from "/data.js";
+import { healthyFoods } from "/snackPicker/data.js";
 const flavorSelect = document.querySelector("#flavor-select");
 const calorieSelect = document.querySelector("#calorie-select");
 const button = document.querySelector("#find-snacks");
