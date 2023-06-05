@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Form</title>
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-text">
+        <h1>Generic Place</h1>
+        <p>The most okay food anywhere on earth</p>
+      </div>
+    </header>
+    <div class="main"></div>
+
+    <div class="thanks-message hide-thanks">Thanks for your order!</div>
+
+    <div class="order-container hidden">
+      <h3>Your order:</h3>
+    </div>
+    <div class="bottom-container hide-bottom"></div>
+
+    <div class="modal hide-modal">
+      <h3>Enter card details</h3>
+      <form class="form">
+        <input
+          id="user-name"
+          type="text"
+          placeholder="Enter your name"
+          required
+        />
+        <input
+          id="card-number"
+          type="text"
+          placeholder="Enter card number"
+          required
+        />
+        <input id="cvv" type="text" placeholder="cvv" required />
+        <button type="submit" class="pay-button">Pay</button>
+      </form>
+    </div>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
