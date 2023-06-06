@@ -8,11 +8,13 @@ const thanks = document.querySelector(".thanks-message");
 const nameInput = document.querySelector("name");
 const form = document.querySelector("form");
 
-let totalPrice = 0;
+// let totalPrice = 0;
+let orderArray = [];
 
 renderItemsHtml();
 
 function renderItemsHtml() {
+  main.innerHTML = "";
   menuArray.forEach((item) => {
     main.innerHTML += `<div class="item-container">
         <div class="emoji-info-price">
@@ -29,29 +31,55 @@ function renderItemsHtml() {
   });
 }
 
+function renderOrdersHtml() {
+  orderContainer.innerHTML = "";
+  orderArray.forEach((item) => {
+    orderContainer.innerHTML += `<div class="added-item">
+      <div class="added-item-name">${item.name}<button class="remove-btn" data-id="${item.id}">remove</button></div>
+      <div class="added-item-price">${"$" + item.price}</div>
+    </div>`;
+  });
+}
+
 document.addEventListener("click", (event) => {
+  // HACK!
+  if (!event.target.dataset.id && orderArray.length == 0) {
+    return;
+  }
+
   thanks.classList.add("hide-thanks");
   orderContainer.classList.remove("hidden");
   bottomContainer.classList.remove("hide-bottom");
 
   // ADD ITEMS TO THE ORDER SECTION**************
-  menuArray.forEach((item) => {
-    if (event.target.dataset.id === item.id.toString()) {
-      orderContainer.innerHTML += `<div class="added-item">
-      <div class="added-item-name">${item.name}<button class="remove-btn ${
-        item.name
-      }">remove</button></div>
-      <div class="added-item-price">${"$" + item.price}</div>
-    </div>`;
-      totalPrice += item.price;
-    }
-  });
-
-  if (bottomContainer.innerHTML === "") {
-    renderTotalSection();
+  if (event.target.classList.contains("add-btn")) {
+    menuArray.forEach((item) => {
+      if (event.target.dataset.id === item.id.toString()) {
+      //   orderContainer.innerHTML += `<div class="added-item">
+      //   <div class="added-item-name">${item.name}<button class="remove-btn" data-id="${item.id}">remove</button></div>
+      //   <div class="added-item-price">${"$" + item.price}</div>
+      // </div>`;
+        // totalPrice += item.price;
+        orderArray.push(item);
+        renderOrdersHtml();
+      }
+    });
   }
 
-  updatePrice();
+  if (event.target.classList.contains("remove-btn")) {
+    for (let i = 0; i < orderArray.length; i++) {
+      const item = orderArray[i];
+      if (item.id === parseInt(event.target.dataset.id)) {
+        // totalPrice -= item.price;
+        orderArray.splice(i, 1);
+        renderOrdersHtml();
+        break;
+      }
+    }
+  }
+
+  // updatePrice();
+  renderTotalSection();
 
   const orderBtn = document.querySelector(".order-btn");
   const clickedInsideModal = event.target.closest(".modal");
@@ -70,20 +98,29 @@ document.addEventListener("click", (event) => {
 });
 
 function renderTotalSection() {
-  bottomContainer.classList.remove("hide-bottom");
+  let totalPrice = 0;
+  orderArray.forEach((item) => {
+    totalPrice += item.price;
+  });
 
-  bottomContainer.innerHTML += `<div class="total-container">
+  bottomContainer.classList.remove("hide-bottom");
+  bottomContainer.innerHTML = `<div class="total-container">
     <h3>Total price:</h3>
-    <div class="total-price">$$$</div>
+    <div class="total-price">$${totalPrice}</div>
     </div>
     <button class="order-btn">Complete Order</button>
   </div>`;
 }
 
-function updatePrice() {
-  const totalPriceDiv = document.querySelector(".total-price");
-  totalPriceDiv.innerText = "$" + totalPrice;
-}
+// // function updatePrice() {
+// //   let totalPrice = 0;
+// //   orderArray.forEach((item) => {
+// //     totalPrice += item.price;
+// //   });
+
+// //   const totalPriceDiv = document.querySelector(".total-price");
+// //   totalPriceDiv.innerText = "$" + totalPrice;
+// }
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
