@@ -41,6 +41,21 @@ function renderOrdersHtml() {
   });
 }
 
+// Neater way to handle clicks:
+// document.addEventListener("click", (event) => {
+//   // These just handle changing your internal state (ie orderArray and menuArray), no ui work
+//   if (event === 'add') {
+//     handleAddClick(event);
+//   } else if (event === 'remove') {
+//     handleRmClick(event);
+//   } else if (event === 'order') {
+//     handleOrderClick(event);
+//   }
+
+//   // redraw from scratch all the parts of your UI that maybe change 
+//   // here using your internal state (ie orderArray and menuArray)
+// });
+
 document.addEventListener("click", (event) => {
   // HACK!
   if (!event.target.dataset.id && orderArray.length == 0) {
