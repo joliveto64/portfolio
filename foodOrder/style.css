@@ -114,6 +114,7 @@ header {
   margin: 0 auto;
   padding: 0 10px;
   box-sizing: border-box;
+  border-bottom: solid 2px lightgray;
 }
 
 .order-container h3 {
@@ -149,7 +150,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: solid 2px lightgray;
   padding-bottom: 10px;
 }
 
@@ -247,4 +247,10 @@ header {
 
 .hidden {
   display: none;
+}
+
+.thanks-message {
+  text-align: center;
+  margin: 0;
+  padding-top: 30px;
 }
