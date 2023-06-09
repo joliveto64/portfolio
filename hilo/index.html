@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hi-lo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p id="round-info">ready?</p>
+      <div class="top-container">
+        <div class="chart">
+          <h2>hi ⬆</h2>
+          <p>total | points</p>
+          <p>30 = 10</p>
+          <p>29 = 8</p>
+          <p>28 = 7</p>
+          <p>27 = 6</p>
+          <p>26 = 5</p>
+          <p>25 = 4</p>
+          <p>24 = 3</p>
+          <p>23 = 2</p>
+          <p>⬇ 22 = 1</p>
+        </div>
+        <div class="dice-container">
+          <p class="dice">?</p>
+          <p class="dice">?</p>
+          <p class="dice">?</p>
+          <p class="dice">?</p>
+          <p class="dice">?</p>
+          <p class="hi-lo dice" data-hilo="">⬇⬆</p>
+        </div>
+        <div class="chart">
+          <h2>lo ⬇</h2>
+          <p>total | points</p>
+          <p>5 = 10</p>
+          <p>6 = 8</p>
+          <p>7 = 7</p>
+          <p>8 = 6</p>
+          <p>9 = 5</p>
+          <p>10 = 4</p>
+          <p>11 = 3</p>
+          <p>12 = 2</p>
+          <p>⬆️ 13 = 1</p>
+        </div>
+      </div>
+      <div class="bottom-container">
+        <h1 class="player-1 score">p1 score</h1>
+        <button id="roll-btn">roll</button>
+        <h1 class="player-2 score">p2 score</h1>
+      </div>
+    </div>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
