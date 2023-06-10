@@ -2,79 +2,93 @@ body {
   margin: 0;
   padding: 0;
   user-select: none;
+  background-color: rgb(219, 221, 228);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
 }
 
+/* MAIN PAGE STUFF ****************************************************/
 .container {
   background-color: rgb(219, 221, 228);
+  color: rgb(80, 80, 80);
   margin: 0;
   padding: 0;
+  height: 95vh;
+  width: 95vw;
   display: flex;
   flex-direction: column;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  height: 100vh;
-  box-sizing: border-box;
+  justify-content: space-between;
   overflow: hidden;
-  justify-content: center;
-  color: rgb(80, 80, 80);
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.score {
+  border-radius: 5%;
+  text-align: center;
+  transition: 0.2s;
+  font-size: 1.25rem;
 }
 
 #round-info {
   margin: 0;
   padding: 0;
   text-align: center;
-  font-size: 30px;
+  font-size: 1.75rem;
   font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.top-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .chart {
   background-color: rgb(233, 236, 240);
   border: none;
-  border-radius: 5px;
+  border-radius: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 5px;
   min-width: 100px;
   justify-content: center;
-  box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.3);
 }
 
-h2 {
+.chart h2 {
   margin: 10px;
 }
 
-.chart-number {
-  display: flex;
-  justify-content: space-between;
-}
-
 .dice-container {
-  font-size: 40px;
+  font-size: 3rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
 }
 
 .dice {
-  background-color: whitesmoke;
-  height: 75px;
-  width: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
-  border-radius: 5px;
-  padding: 10px;
+  background-color: whitesmoke;
+  height: calc(100vw / 2.5);
+  width: calc(100vw / 2.5);
+  background-color: #ccc;
+  margin: 0.2rem;
   transition: 0.2s;
+  border-radius: 5%;
+  padding: 0;
+  font-weight: bold;
+}
+
+.hi-lo {
+  background-color: rgb(134, 197, 255);
+  color: whitesmoke;
+  font-family: sans-serif;
+  font-weight: bold;
 }
 
 .dice:active {
@@ -82,33 +96,21 @@ h2 {
   transition: 0.2s;
 }
 
-.hi-lo {
-  background-color: rgb(134, 197, 255);
-  color: whitesmoke;
-}
-
-.bottom-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgb(80, 80, 80);
-}
-
 #roll-btn {
+  font-family: "Roboto", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35%;
-  padding: 20px;
-  font-size: 30px;
-  border-radius: 5px;
+  width: 100%;
+  font-size: 2rem;
   border: none;
-  margin: 0;
+  border-radius: 2%;
+  margin-top: 1rem;
   color: rgb(80, 80, 80);
   font-weight: bold;
-  letter-spacing: 1px;
   transition: 0.2s;
-  box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.2);
+  background-color: rgb(233, 236, 240);
+  padding: 1rem;
 }
 
 #roll-btn:active {
@@ -116,29 +118,17 @@ h2 {
   transform: scale(0.98);
 }
 
-.score {
-  background-color: whitesmoke;
-  border-radius: 5px;
-  padding: 5px 20px;
-  margin: 15px;
-  min-width: 150px;
-  text-align: center;
-  letter-spacing: 1px;
-  transition: 0.2s;
-}
-
 .lock {
   background-color: rgb(100, 120, 149);
   color: whitesmoke;
-  box-shadow: 0px 0px 15px rgba(50, 50, 50, 0.3);
 }
 
 .active {
-  background-color: rgb(134, 197, 255);
-  color: whitesmoke;
+  color: rgb(134, 197, 255);
   transition: 0.2s;
 }
 
+/* ANIMATIONS ********************************************* */
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -150,10 +140,6 @@ h2 {
 
 .roll {
   animation: rotate 0.25s ease-out;
-}
-
-.hidden {
-  display: none;
 }
 
 @keyframes grow {
@@ -170,4 +156,9 @@ h2 {
 
 .grow {
   animation: grow 0.5s ease-in-out;
+}
+
+/* HIDE CONTENT ***************************************************/
+.hidden {
+  display: none;
 }

@@ -6,12 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hi-lo</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
-      <p id="round-info">ready?</p>
       <div class="top-container">
-        <div class="chart">
+        <h1 class="player-1 score">p1 score</h1>
+        <p id="round-info">ready?</p>
+        <h1 class="player-2 score">p2 score</h1>
+      </div>
+      <!-- <div class="chart">
           <h2>hi ⬆</h2>
           <p>total | points</p>
           <p>30 = 10</p>
@@ -23,16 +32,19 @@
           <p>24 = 3</p>
           <p>23 = 2</p>
           <p>⬇ 22 = 1</p>
-        </div>
+        </div> -->
+      <div class="main-container">
         <div class="dice-container">
           <p class="dice">?</p>
           <p class="dice">?</p>
           <p class="dice">?</p>
           <p class="dice">?</p>
           <p class="dice">?</p>
-          <p class="hi-lo dice" data-hilo="">⬇⬆</p>
+          <p class="hi-lo dice">↑↓</p>
         </div>
-        <div class="chart">
+      </div>
+      <div class="button-container"><button id="roll-btn">roll</button></div>
+      <!-- <div class="chart">
           <h2>lo ⬇</h2>
           <p>total | points</p>
           <p>5 = 10</p>
@@ -44,13 +56,7 @@
           <p>11 = 3</p>
           <p>12 = 2</p>
           <p>⬆️ 13 = 1</p>
-        </div>
-      </div>
-      <div class="bottom-container">
-        <h1 class="player-1 score">p1 score</h1>
-        <button id="roll-btn">roll</button>
-        <h1 class="player-2 score">p2 score</h1>
-      </div>
+        </div> -->
     </div>
     <script src="index.js" type="module"></script>
   </body>

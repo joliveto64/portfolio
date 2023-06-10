@@ -1,10 +1,10 @@
 export const hiLoDieArray = [
-  ["1⬆️", "hi"],
-  ["2⬆️", "hi"],
-  ["3⬆️", "hi"],
-  ["1⬇️", "lo"],
-  ["2⬇️", "lo"],
-  ["3⬇️", "lo"],
+  ["1↑", "hi"],
+  ["2↑", "hi"],
+  ["3↑", "hi"],
+  ["1↓", "lo"],
+  ["2↓", "lo"],
+  ["3↓", "lo"],
 ];
 
 export const hiTableData = [
