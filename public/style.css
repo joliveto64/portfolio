@@ -4,59 +4,48 @@
   box-sizing: border-box;
   font-family: sans-serif;
   scroll-behavior: smooth;
+  user-select: none;
+  scrollbar-width: thin;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(30, 30, 30);
+  width: 100vw;
 }
 
 /* HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-header {
+.header {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px 30px;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 10000;
+  z-index: 1;
+  background-color: rgba(30, 30, 30);
+  padding: 1rem;
+  height: 4rem;
 }
 
-.hide {
-  background-color: rgba(30, 30, 30, 1);
-  transition: all 0.5s ease-in-out;
-}
-
-header .logo {
+.header-name {
   color: whitesmoke;
   text-decoration: none;
   font-weight: 700;
-  font-size: 2em;
-  transition: 0.25s;
+  font-size: 1.5rem;
 }
 
-header .logo:hover {
-  color: rgb(255, 225, 115);
-  transition: 0.25s;
-}
-
-header ul {
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
-}
-
-header ul li {
-  list-style: none;
-}
-
-header ul li a {
+.portfolio-button,
+.contact-button {
   text-decoration: none;
   color: whitesmoke;
-  font-weight: 500;
-  font-size: 1.25em;
-  transition: 0.25s;
+  font-size: 1rem;
+  padding-left: 1rem;
 }
 
-header ul li:hover a {
-  transition: 0.25s;
+.portfolio-button:active,
+.contact-button:active,
+.header-name:active {
   color: rgb(255, 225, 115);
 }
 
@@ -97,99 +86,79 @@ header ul li:hover a {
   color: rgb(255, 225, 115);
 }
 
-#search-button:hover {
-  background-color: rgb(255, 225, 115);
-  transition: 0.25s;
-  color: rgb(30, 30, 30);
-}
-
 .hidden {
   display: none;
 }
 
 /* HOME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#home {
+.home {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-height: 100vh;
-  background-color: rgb(30, 30, 30);
+  position: relative;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 100vw;
+  width: 100%;
+  padding: 1rem;
+  height: 100vh;
 }
 
-#home .content h2 {
-  font-size: 5em;
+.home-left h2 {
+  font-size: 5rem;
   color: rgb(255, 225, 115);
+  padding-bottom: 1rem;
+  text-align: left;
 }
 
-#home .content p {
+.home-left p {
   color: whitesmoke;
-  font-size: 1.2em;
-  line-height: 1.6em;
-  max-width: 26em;
-  padding-block: 20px;
-  margin-bottom: 20px;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
 }
 
-.btn {
-  font-size: 1.25em;
-  max-width: 200px;
-  background-color: rgb(98, 98, 98);
-  color: rgb(255, 225, 115);
-  text-align: center;
-  padding: 15px 30px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  margin-top: 10px;
-  border: solid;
-  border-color: rgb(30, 30, 30);
-  font-weight: 500;
-  transition: 0.25s;
-}
-
-.btn:hover {
-  background-color: rgb(255, 225, 115);
-  color: rgb(30, 30, 30);
-  transition: 0.5s;
-}
-
-#home .me {
-  max-height: 75vh;
+.home-right {
   border: solid;
   border-color: rgb(255, 225, 115);
   border-width: 5px;
-  top: 30px;
+  max-width: 80%;
+  height: auto;
+  display: none;
 }
 
 /* PORTFOLIO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-#portfolio .content {
+.portfolio {
+  background-color: rgb(30, 30, 30);
+  color: whitesmoke;
+  text-align: center;
+  height: 100vh;
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
 }
 
-#portfolio p,
-#contact p {
-  margin-top: 5px;
-  margin-bottom: 25px;
+.portfolio-text span {
+  color: rgb(255, 225, 115);
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-#portfolio .content .imgBx {
-  position: relative;
-  max-width: 300px;
+.portfolio-content {
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  margin-left: 1rem;
 }
 
-#portfolio .content .imgBx img {
-  max-height: 300px;
+.tile {
+  margin: 1rem 1rem 1rem 0;
 }
 
-#portfolio .content .imgBx p {
-  max-width: 300px;
+.tile img {
+  width: 85vw;
+  height: auto;
+  scroll-snap-align: center;
 }
 
 @keyframes oscillate {
@@ -205,7 +174,7 @@ header ul li:hover a {
 #fireworks,
 #stars {
   cursor: pointer;
-  filter: grayscale(100%) contrast(1.5) brightness(0.8);
+  filter: brightness(0.9);
 }
 
 #clouds:hover,
@@ -217,120 +186,115 @@ header ul li:hover a {
   transition: 0.5s;
 }
 
-#portfolio,
-#contact {
+/* CONTACT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.contact {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 120px 100px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
   background-color: rgb(30, 30, 30);
   color: whitesmoke;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
 }
 
-/* CONTACT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-.sectiontext h2 {
+.contact-text span {
   color: rgb(255, 225, 115);
   font-size: 2em;
 }
 
+.contact-text p {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
 .contact-buttons {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1.5rem;
 }
 
-.contact-text {
-  padding: 10px;
-  font-size: 1.5em;
-  text-decoration: none;
-  color: rgb(30, 30, 30);
-}
-
-.fa-envelope::before {
-  color: rgb(30, 30, 30);
-  font-size: 1.2em;
-}
-
-.fa-phone::before {
-  color: rgb(30, 30, 30);
-  font-size: 1.2em;
-}
-
-.mail {
-  background-color: rgb(255, 225, 115);
-  margin: 10px;
-  padding: 10px;
-  height: 45px;
-}
-
-.mail a {
-  text-decoration: none;
-}
-
+.mail,
 .phone {
+  text-decoration: none;
+  color: rgb(30, 30, 30);
+  font-weight: bold;
+  font-size: 1.5rem;
   background-color: rgb(255, 225, 115);
-  margin: 10px;
-  padding: 10px;
-  height: 45px;
+  width: 90%;
+  padding-block: 1rem;
 }
 
-.phone a {
-  text-decoration: none;
+.mail:hover,
+.phone:hover {
+  animation: oscillate 0.5s infinite alternate;
 }
 
 .thanks {
-  text-align: center;
-  padding-top: 20px;
-  font-style: italic;
   font-weight: 300;
   letter-spacing: 1px;
 }
 
 /* RESPONSIVE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-@media (max-width: 900px) {
-  header {
-    padding: 20px 50px;
+@media (min-width: 900px) {
+  body {
+    overflow-x: hidden;
   }
 
-  header ul {
-    display: none;
+  .header {
+    padding: 2rem;
   }
 
-  #home {
-    padding: 150px 50px;
+  .home {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .home-left {
+    width: calc(100vw / 3);
+  }
+
+  .home-right {
+    display: inline-block;
+    width: calc(100vw / 3);
+  }
+  .portfolio {
+    padding: 2rem;
+    display: flex;
     flex-direction: column;
-    padding-bottom: 0;
+  }
+  .portfolio-content {
+    overflow-x: hidden;
+    display: grid;
+    scroll-behavior: none;
+    margin-left: 0;
+    grid-template: 1fr 1fr / 1fr 1fr 1fr;
+    padding: 1rem;
+    gap: 2rem;
   }
 
-  #home .me {
-    scale: 80%;
-  }
-  #home .content h2 {
-    font-size: 4em;
-  }
-  .btn {
-    max-width: 160px;
-    padding: 10px 20px;
-  }
-}
-
-@media (max-width: 700px) {
-  #home .content h2 {
-    font-size: 3em;
+  .tile {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
   }
 
-  .mail,
-  .phone {
-    font-size: 70%;
+  .tile img {
+    width: 100%;
+    height: auto;
+  }
+
+  .contact {
   }
 }
 
 /* CLOUD PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
 #cloud-section {
   display: flex;
   height: 100vh;

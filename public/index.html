@@ -4,113 +4,93 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal Portfolio</title>
+    <title>John Oliveto</title>
     <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <!-- <script
-      async
-      src="https://cse.google.com/cse.js?cx=d1fd96ad9666841c1"
-    ></script> -->
   </head>
   <body>
-    <header class="hide" id="header">
-      <a href="#home" class="logo">John Oliveto</a>
-      <!-- <script
-        async
-        src="https://cse.google.com/cse.js?cx=d1fd96ad9666841c1"
-      ></script>
-      <div class="gcse-searchbox-only"></div> -->
-      <ul class="nav">
-        <li>
+    <div class="main-container">
+      <header class="header">
+        <a href="#home" class="header-name">John Oliveto</a>
+
+        <!-- <div class="search">
           <input type="text" id="search-input" />
           <button id="search-button">search</button>
           <div id="search-results">
             <p class="hidden" id="search-results-string"></p>
+          </div> -->
+
+        <div class="header-right">
+          <a class="portfolio-button" href="#portfolio">projects</a>
+          <a class="contact-button" href="#contact">contact</a>
+        </div>
+      </header>
+
+      <section class="home" id="home">
+        <div class="home-left">
+          <h2>Hi,</h2>
+          <p>
+            I'm John! I have experience with HTML, CCS, JavaScript and React.
+            I'm pretty cool.
+          </p>
+        </div>
+        <img src="Me2.JPG" class="home-right" />
+      </section>
+
+      <section class="portfolio" id="portfolio">
+        <div class="portfolio-text">
+          <span>Things I've Made</span>
+          <p>Here are some of the projects I've made...enjoy!</p>
+        </div>
+
+        <div class="portfolio-content">
+          <div class="tile">
+            <a href="clouds.html">
+              <img src="clouds.png" alt="clouds" id="clouds" />
+            </a>
+            <p>
+              Cloud sim made with the p5 library! Randomly generates 1500 layers
+              with varying speeds.
+            </p>
           </div>
-        </li>
-        <li><a href="#portfolio">portfolio</a></li>
-        <li><a href="#contact">contact</a></li>
-      </ul>
-    </header>
-    <section id="home">
-      <div class="content">
-        <h2>Hiya,</h2>
-        <p>
-          My name's John. I'm an aspiring software developer with experience
-          with HTML, CCS and Javascript. I'm pretty dope.
-        </p>
-        <a href="#contact" class="btn">contact me</a>
-      </div>
-      <img src="Me2.JPG" class="me" />
-    </section>
-    <section id="portfolio">
-      <div class="sectiontext">
-        <h2>Things I've Made</h2>
-        <p>
-          Here's some of the projects I've worked on. Take your time looking
-          around and be prepared to marvel at the sheer brilliance of my
-          superior coding prowess!
-        </p>
-      </div>
-      <div class="content">
-        <div class="imgBx">
-          <a href="clouds.html" class="image-link">
-            <img src="clouds.png" alt="Img" id="clouds" />
-          </a>
+
+          <div class="tile">
+            <a href="fireworks.html">
+              <img src="fireworks.png" alt="fireworks" id="fireworks" />
+            </a>
+            <p>
+              Touch to shoot fireworks, made with the p5 library. It generates
+              stars, smoke, the cityscape and fireworks randomy!
+            </p>
+          </div>
+          <div class="tile">
+            <a href="stars.html">
+              <img src="stars.png" alt="stars" id="stars" />
+            </a>
+            <p>
+              This project (created in p5) is a warp-speed animation that allows
+              you to click to slow down and move the stars around!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="contact-text">
+          <span>Contact me</span>
           <p>
-            This project is a dynamic, real-time cloud simulation system that
-            was created using the p5 editor!
+            Impressed by what you've seen? I thought you might be. Reach me by
+            email or phone!
           </p>
         </div>
-        <div class="imgBx" class="image-link">
-          <a href="fireworks.html">
-            <img src="fireworks.png" alt="Img" id="fireworks" />
-          </a>
-          <p>
-            This project (created in p5) is a touch-capable fireworks demo which
-            features randomized stars, clouds, smoke, cityscape and, of course,
-            fireworks! <a href="hilo/index.html">link</a>
-          </p>
-        </div>
-        <div class="imgBx" class="image-link">
-          <a href="stars.html">
-            <img src="stars.png" alt="Img" id="stars" />
-          </a>
-          <p>
-            This project (created in p5) is a warp-speed animation that allows
-            you to click to slow down and move the stars around!
-          </p>
-        </div>
-      </div>
-    </section>
-    <section id="contact">
-      <div class="sectiontext">
-        <h2>Contact me</h2>
-        <p>
-          Impressed by what you've seen? I thought you might be. Now that you're
-          looking to hire me, the best ways to reach out are by email or phone.
-        </p>
-      </div>
-      <div class="contact-buttons">
-        <div class="mail">
-          <a href="mailto:joliveto64@gmail.com" class="fa-solid fa-envelope"
-            ><span class="contact-text">joliveto64@gmail.com</span></a
+        <div class="contact-buttons">
+          <a class="mail" href="mailto:joliveto64@gmail.com"
+            >joliveto64@gmail.com</a
           >
+          <a class="phone" href="tel:+15869072080">+1 586-907-2080</a>
         </div>
-        <div class="phone">
-          <a href="tel:+15869072080" class="fa-solid fa-phone"
-            ><span class="contact-text">+1 586-907-2080</span></a
-          >
-        </div>
-      </div>
-      <div class="thanks">Thanks for visiting!</div>
-    </section>
+        <div class="thanks"><em>Thanks for visiting!</em> <span>🥰</span></div>
+      </section>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>

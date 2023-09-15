@@ -1,15 +1,3 @@
-// HIDE HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-// const header = document.getElementById("header");
-
-// window.addEventListener("scroll", () => {
-//   if (window.scrollY < 100) {
-//     header.classList.remove("hide");
-//   } else {
-//     header.classList.add("hide");
-//   }
-// });
-
 // SEARCH STUFF ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // create variables
@@ -18,6 +6,7 @@ const searchResultsContainer = document.getElementById("search-results-string");
 const htmlTags = document.getElementsByTagName("a");
 const linksArr = [];
 
+// populate links array
 for (let i = 0; i < htmlTags.length; i++) {
   linksArr.push(htmlTags[i].href);
 }
