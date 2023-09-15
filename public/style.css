@@ -249,6 +249,17 @@
 
   .header {
     padding: 2rem;
+    padding-right: 3rem;
+  }
+
+  .header-name {
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  .portfolio-button,
+  .contact-button {
+    font-size: 1.25rem;
   }
 
   .home {
@@ -268,13 +279,15 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .portfolio-content {
     overflow-x: hidden;
     display: grid;
     scroll-behavior: none;
     margin-left: 0;
-    grid-template: 1fr 1fr / 1fr 1fr 1fr;
+    grid-template: 1fr / 1fr 1fr 1fr;
     padding: 1rem;
     gap: 2rem;
   }
@@ -288,9 +301,6 @@
   .tile img {
     width: 100%;
     height: auto;
-  }
-
-  .contact {
   }
 }
 
