@@ -100,7 +100,8 @@
   align-items: center;
   width: 100%;
   padding: 1rem;
-  height: 100vh;
+  height: calc(100vh + 4rem);
+  min-height: calc(100vh - 4rem);
 }
 
 .home-left h2 {
@@ -127,13 +128,15 @@
 
 /* PORTFOLIO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .portfolio {
+  scroll-margin-top: 6rem;
   background-color: rgb(30, 30, 30);
   color: whitesmoke;
   text-align: center;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
 }
 
 .portfolio-text span {
@@ -143,20 +146,16 @@
 }
 
 .portfolio-content {
-  overflow-x: scroll;
   display: flex;
-  flex-direction: row;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  margin-left: 1rem;
+  flex-direction: column;
 }
 
 .tile {
-  margin: 1rem 1rem 1rem 0;
+  margin: 1rem 0rem 1rem 0rem;
 }
 
 .tile img {
-  width: 85vw;
+  width: 100%;
   height: auto;
   scroll-snap-align: center;
 }
@@ -189,12 +188,12 @@
 /* CONTACT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .contact {
   height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: rgb(30, 30, 30);
   color: whitesmoke;
 }
@@ -215,8 +214,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  padding-block: 1.5rem;
+  row-gap: 0.5rem;
+  padding-block: 0.5rem;
 }
 
 .mail,
@@ -242,7 +241,7 @@
 
 /* RESPONSIVE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-@media (min-width: 900px) {
+@media (min-width: 950px) {
   body {
     overflow-x: hidden;
   }
@@ -268,39 +267,110 @@
   }
 
   .home-left {
-    width: calc(100vw / 3);
+    width: 35%;
   }
 
   .home-right {
     display: inline-block;
-    width: calc(100vw / 3);
+    width: 35%;
+    max-width: calc(100vh - 8rem);
   }
+
   .portfolio {
-    padding: 2rem;
+    scroll-margin-top: 0rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
   }
   .portfolio-content {
-    overflow-x: hidden;
-    display: grid;
-    scroll-behavior: none;
-    margin-left: 0;
-    grid-template: 1fr / 1fr 1fr 1fr;
-    padding: 1rem;
-    gap: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 
   .tile {
     margin: 0;
     display: flex;
     flex-direction: column;
+    width: 25%;
+    margin-top: 2rem;
   }
 
   .tile img {
     width: 100%;
-    height: auto;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 949px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .header {
+    padding: 2rem;
+    padding-right: 3rem;
+  }
+
+  .header-name {
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  .portfolio-button,
+  .contact-button {
+    font-size: 1.25rem;
+  }
+
+  .home {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .home-left {
+    width: 35%;
+  }
+
+  .home-right {
+    display: inline-block;
+    width: 35%;
+    max-width: calc(100vh - 8rem);
+  }
+
+  .portfolio {
+    scroll-margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .portfolio-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .tile {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin-top: 2rem;
+  }
+
+  .tile img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 300px) {
+  .header-right {
+    display: none;
+  }
+
+  .phone,
+  .mail {
+    font-size: 1rem;
   }
 }
 
