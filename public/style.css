@@ -11,7 +11,7 @@
 :root {
   --main-dark-color: rgb(30, 30, 30);
   --main-text-color: whitesmoke;
-  --main-accent-color: rgb(255, 225, 115);
+  --main-accent-color: rgb(239, 215, 136);
 }
 
 body {
@@ -65,7 +65,6 @@ body {
 }
 
 /* HOME ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
 .home {
   width: 100%;
   min-height: 100vh;
@@ -91,6 +90,7 @@ body {
 
 .home-left span {
   font-size: 1rem;
+  color: whitesmoke;
   opacity: 0.8;
 }
 
@@ -116,6 +116,10 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
+}
+
+.portfolio h1 {
+  color: var(--main-accent-color);
 }
 
 .portfolio-text {
@@ -159,21 +163,22 @@ body {
 
 .tile-text a {
   text-decoration: none;
-  color: var(--main-dark-color);
+  color: var(--main-accent-color);
   font-weight: bold;
-  background-color: var(--main-accent-color);
-  padding: 0.5rem 2rem;
+  background-color: var(--main-dark-color);
+  padding: 0.5rem 0;
   text-align: center;
   cursor: pointer;
-  border: 2px solid var(--main-dark-color);
+  border: 1px solid var(--main-accent-color);
   transition: 0.2s;
+  margin-bottom: 0.5rem;
 }
 
 .tile-text a:hover,
 .tile-text a:active {
-  background-color: var(--main-dark-color);
-  color: var(--main-accent-color);
-  border: 2px solid var(--main-accent-color);
+  background-color: var(--main-accent-color);
+  color: var(--main-dark-color);
+  border: 1px solid var(--main-accent-color);
 }
 
 .tile img {
@@ -217,21 +222,21 @@ body {
 .mail,
 .phone {
   text-decoration: none;
-  color: var(--main-dark-color);
+  color: var(--main-accent-color);
   font-weight: bold;
   font-size: 1.5rem;
-  background-color: var(--main-accent-color);
+  background-color: var(--main-dark-color);
   width: 100%;
   padding-block: 1rem;
-  border: 2px solid var(--main-dark-color);
+  border: 1px solid var(--main-accent-color);
   transition: 0.2s;
 }
 
 .mail:hover,
 .phone:hover {
-  background-color: var(--main-dark-color);
-  color: var(--main-accent-color);
-  border: 2px solid var(--main-accent-color);
+  background-color: var(--main-accent-color);
+  color: var(--main-dark-color);
+  border: 1px solid var(--main-accent-color);
 }
 
 .thanks {
@@ -258,19 +263,26 @@ body {
   .portfolio,
   .home,
   .contact {
-    padding: 5rem;
+    padding: 6rem;
+  }
+
+  .portfolio {
+    scroll-margin-top: 0rem;
   }
 
   .tile {
     display: grid;
     grid-template: 1fr / 1fr 1fr;
-    gap: 2rem;
     align-items: center;
     margin-block: 1rem;
+    border-left: 1px solid var(--main-accent-color);
   }
 
-  .tile-text a {
-    width: 50%;
+  .tile img {
+    width: 70%;
+    align-self: flex-start;
+    justify-content: center;
+    margin-left: 1rem;
   }
 }
 
