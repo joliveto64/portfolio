@@ -17,6 +17,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--main-dark-color);
 }
 
 .main-container {
@@ -73,6 +74,9 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
+  background-image: url(images/Scotland\ dark.jpg);
+  background-size: cover;
+  background-position: 15%;
 }
 
 .home-left h2 {
@@ -116,6 +120,7 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
+  margin-top: 2rem;
 }
 
 .portfolio h1 {
@@ -247,6 +252,9 @@ body {
 /* MEDIA QUERIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 @media (min-width: 650px) {
+  .home {
+    background-position: center;
+  }
   .header {
     padding: 2rem;
   }
