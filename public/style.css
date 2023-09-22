@@ -47,21 +47,16 @@ body {
   font-size: 1.5rem;
 }
 
-.portfolio-button,
-.contact-button {
+.button {
   text-decoration: none;
   color: whitesmoke;
   font-size: 1rem;
-  padding-left: 1rem;
+  padding-left: 0.25rem;
   transition: 0.2s;
 }
 
-.portfolio-button:active,
-.portfolio-button:hover,
-.contact-button:active,
-.contact-button:hover,
-.header-name:active,
-.header-name:hover {
+.button:active,
+.button:hover {
   color: var(--main-accent-color);
 }
 
@@ -132,7 +127,8 @@ body {
 }
 
 .contact-text span,
-.portfolio-text span {
+.portfolio-text span,
+.about-me span {
   color: var(--main-accent-color);
   font-size: 2rem;
   font-weight: bold;
@@ -192,13 +188,31 @@ body {
   object-fit: cover;
 }
 
-/* @keyframes oscillate {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-5px);
-  }
+/* ABOUT ME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.about-me {
+  scroll-margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+.about-me-heading {
+  color: var(--main-accent-color);
+}
+
+.about-me p {
+  color: var(--main-text-color);
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: solid 1px var(--main-accent-color);
+}
+
+.story {
+  color: var(--main-accent-color);
+  font-weight: bold;
+  background-color: transparent;
 }
 
 /* CONTACT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -209,7 +223,6 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  padding: 0.5rem;
   background-color: var(--main-dark-color);
   color: whitesmoke;
   padding: 1rem;
@@ -263,14 +276,14 @@ body {
     font-size: 1.75rem;
   }
 
-  .contact-button,
-  .portfolio-button {
+  .button {
     font-size: 1.2rem;
   }
 
   .portfolio,
   .home,
-  .contact {
+  .contact,
+  .about-me {
     padding: 6rem;
   }
 
@@ -292,17 +305,22 @@ body {
     justify-content: center;
     margin-left: 1rem;
   }
+
+  .about-me {
+    max-width: 70%;
+  }
 }
 
-@media (min-width: 600px) and (max-width: 949px) {
-}
+/* @media (min-width: 600px) and (max-width: 949px) {
+} */
 
 @media (max-width: 300px) {
   .mail,
-  .phone,
-  .contact-button,
-  .portfolio-button,
-  .header-name {
+  .phone {
     font-size: smaller;
+  }
+
+  .button {
+    display: none;
   }
 }
