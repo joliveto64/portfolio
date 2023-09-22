@@ -278,6 +278,7 @@ body {
 
   .button {
     font-size: 1.2rem;
+    padding-left: 1rem;
   }
 
   .portfolio,
@@ -287,7 +288,8 @@ body {
     padding: 6rem;
   }
 
-  .portfolio {
+  .portfolio,
+  .about-me {
     scroll-margin-top: 0rem;
   }
 
@@ -307,14 +309,14 @@ body {
   }
 
   .about-me {
-    max-width: 70%;
+    max-width: 100%;
   }
 }
 
 /* @media (min-width: 600px) and (max-width: 949px) {
 } */
 
-@media (max-width: 300px) {
+@media (max-width: 350px) {
   .mail,
   .phone {
     font-size: smaller;
