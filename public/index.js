@@ -1,5 +1,5 @@
 const text2 =
-  "I'm John! I have experience with HTML, CCS, JavaScript and React.";
+  "I'm John! I have experience with React, Javascript, HTML and CCS.";
 const text3 = "(I also play the drums and lots of Monster Hunter)";
 
 const el2 = document.querySelector(".line2");
